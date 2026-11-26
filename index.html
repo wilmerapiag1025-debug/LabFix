@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LabFix | Computer Lab Issue Reporter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+
+        <!-- Header -->
+        <header class="header">
+            <div class="brand">
+                <div class="brand-icon">🔥</div>
+                <div>
+                    <h1>Lab<span>Fix</span></h1>
+                    <p>COMPUTER LAB ISSUE REPORTER</p>
+                </div>
+            </div>
+
+            <div class="status-badge">
+                <span class="status-dot"></span>
+                LAB SYSTEM
+            </div>
+        </header>
+
+        <!-- Welcome section -->
+        <section class="welcome">
+            <div class="welcome-text">
+                <p class="eyebrow">COMPUTER LABORATORY</p>
+                <h2>Something not working?<br>
+                    <span>Let's fix it.</span>
+                </h2>
+                <p class="welcome-description">
+                    Report a computer problem so it can be checked
+                    and fixed for the next student.
+                </p>
+            </div>
+
+            <div class="welcome-icon">🖥️</div>
+        </section>
+
+        <!-- Report form -->
+        <main class="content-grid">
+
+            <section class="panel report-panel">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">NEW REPORT</p>
+                        <h2>Report an Issue</h2>
+                    </div>
+                    <div class="heading-icon">⚡</div>
+                </div>
+
+                <form id="reportForm">
+
+                    <div class="form-group">
+                        <label for="pcNumber">Workstation Number</label>
+                        <input
+                            type="number"
+                            id="pcNumber"
+                            placeholder="Enter PC number (e.g. 12)"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="issueCategory">Issue Category</label>
+                        <select id="issueCategory">
+                            <option value="">Select a problem</option>
+                            <option value="Power">Computer won't turn on</option>
+                            <option value="Monitor">Monitor problem</option>
+                            <option value="Keyboard">Keyboard problem</option>
+                            <option value="Mouse">Mouse problem</option>
+                            <option value="Network">Internet / Network</option>
+                            <option value="Software">Software problem</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Problem Description</label>
+                        <textarea
+                            id="description"
+                            rows="4"
+                            placeholder="Describe what is happening..."
+                        ></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <span>Submit Report</span>
+                        <span>→</span>
+                    </button>
+
+                </form>
+            </section>
+
+            <!-- Reports section -->
+            <section class="panel reports-panel">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">LAB MONITORING</p>
+                        <h2>Reported Issues</h2>
+                    </div>
+                    <div class="report-count">
+                        <span>02</span>
+                        <small>Reports</small>
+                    </div>
+                </div>
+
+                <div class="reports-list">
+
+                    <!-- Sample report 1 -->
+                    <article class="issue-card">
+                        <div class="issue-top">
+                            <span class="pc-label">PC 12</span>
+                            <span class="issue-status">Reported</span>
+                        </div>
+
+                        <h3>🖱️ Mouse Problem</h3>
+                        <p class="issue-description">
+                            Mouse cursor does not move when connected.
+                        </p>
+
+                        <div class="issue-footer">
+                            <span>📅 Nov 26, 2026</span>
+                            <span class="issue-category">Hardware</span>
+                        </div>
+                    </article>
+
+                    <!-- Sample report 2 -->
+                    <article class="issue-card">
+                        <div class="issue-top">
+                            <span class="pc-label">PC 08</span>
+                            <span class="issue-status">Reported</span>
+                        </div>
+
+                        <h3>⌨️ Keyboard Problem</h3>
+                        <p class="issue-description">
+                            Some keys are not responding properly.
+                        </p>
+
+                        <div class="issue-footer">
+                            <span>📅 Nov 27, 2026</span>
+                            <span class="issue-category">Hardware</span>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>LabFix <span>•</span> Computer Laboratory Issue Reporter</p>
+            <p>Built for a better laboratory experience 🔥</p>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

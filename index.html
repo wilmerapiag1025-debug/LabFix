@@ -8,12 +8,24 @@
 </head>
 <body>
 
+    <div class="fire-scene" aria-hidden="true">
+        <img class="fire-art" src="assets/campfire.jpg" alt="">
+        <span class="ember-particle"></span>
+        <span class="ember-particle"></span>
+        <span class="ember-particle"></span>
+        <span class="ember-particle"></span>
+        <span class="ember-particle"></span>
+        <span class="ember-particle"></span>
+        <span class="ember-particle"></span>
+        <span class="ember-particle"></span>
+    </div>
+
     <div class="app-container">
 
         <!-- Header -->
         <header class="header">
             <div class="brand">
-                <div class="brand-icon">🔥</div>
+                <div class="brand-icon">LF</div>
                 <div>
                     <h1>Lab<span>Fix</span></h1>
                     <p>COMPUTER LAB ISSUE REPORTER</p>
@@ -49,7 +61,7 @@
                 <div class="section-heading">
                     <div>
                         <p class="eyebrow">NEW REPORT</p>
-                        <h2>Report an Issue</h2>
+                        <h2 id="formTitle">Report an Issue</h2>
                     </div>
                     <div class="heading-icon">⚡</div>
                 </div>
@@ -61,20 +73,21 @@
                         <input
                             type="number"
                             id="pcNumber"
+                            name="pcNumber"
+                            min="1"
+                            step="1"
                             placeholder="Enter PC number (e.g. 12)"
+                            required
                         >
                     </div>
 
                     <div class="form-group">
                         <label for="issueCategory">Issue Category</label>
-                        <select id="issueCategory">
+                        <select id="issueCategory" name="issueCategory" required>
                             <option value="">Select a problem</option>
-                            <option value="Power">Computer won't turn on</option>
-                            <option value="Monitor">Monitor problem</option>
-                            <option value="Keyboard">Keyboard problem</option>
-                            <option value="Mouse">Mouse problem</option>
-                            <option value="Network">Internet / Network</option>
-                            <option value="Software">Software problem</option>
+                            <option value="Hardware">Hardware</option>
+                            <option value="Software">Software</option>
+                            <option value="Network">Network</option>
                             <option value="Other">Other</option>
                         </select>
                     </div>
@@ -83,14 +96,22 @@
                         <label for="description">Problem Description</label>
                         <textarea
                             id="description"
+                            name="description"
                             rows="4"
+                            minlength="5"
                             placeholder="Describe what is happening..."
+                            required
                         ></textarea>
                     </div>
 
+                    <p id="formMessage" class="form-message" aria-live="polite"></p>
+
                     <button type="submit" class="submit-btn">
-                        <span>Submit Report</span>
+                        <span id="submitButtonText">Submit Report</span>
                         <span>→</span>
+                    </button>
+                    <button type="button" id="cancelEditBtn" class="cancel-edit-btn" hidden>
+                        Cancel Edit
                     </button>
 
                 </form>
@@ -104,50 +125,12 @@
                         <h2>Reported Issues</h2>
                     </div>
                     <div class="report-count">
-                        <span>02</span>
+                        <span id="reportCount" aria-live="polite">0</span>
                         <small>Reports</small>
                     </div>
                 </div>
 
-                <div class="reports-list">
-
-                    <!-- Sample report 1 -->
-                    <article class="issue-card">
-                        <div class="issue-top">
-                            <span class="pc-label">PC 12</span>
-                            <span class="issue-status">Reported</span>
-                        </div>
-
-                        <h3>🖱️ Mouse Problem</h3>
-                        <p class="issue-description">
-                            Mouse cursor does not move when connected.
-                        </p>
-
-                        <div class="issue-footer">
-                            <span>📅 Nov 26, 2026</span>
-                            <span class="issue-category">Hardware</span>
-                        </div>
-                    </article>
-
-                    <!-- Sample report 2 -->
-                    <article class="issue-card">
-                        <div class="issue-top">
-                            <span class="pc-label">PC 08</span>
-                            <span class="issue-status">Reported</span>
-                        </div>
-
-                        <h3>⌨️ Keyboard Problem</h3>
-                        <p class="issue-description">
-                            Some keys are not responding properly.
-                        </p>
-
-                        <div class="issue-footer">
-                            <span>📅 Nov 27, 2026</span>
-                            <span class="issue-category">Hardware</span>
-                        </div>
-                    </article>
-
-                </div>
+                <div class="reports-list" id="reportsList" aria-live="polite"></div>
             </section>
 
         </main>
@@ -155,7 +138,7 @@
         <!-- Footer -->
         <footer class="footer">
             <p>LabFix <span>•</span> Computer Laboratory Issue Reporter</p>
-            <p>Built for a better laboratory experience 🔥</p>
+            <p>Built for a better laboratory experience</p>
         </footer>
 
     </div>

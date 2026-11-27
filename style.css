@@ -26,6 +26,7 @@ body {
     background: var(--background);
     color: var(--white);
     min-height: 100vh;
+    isolation: isolate;
 }
 
 /* Background glow */
@@ -45,8 +46,125 @@ body::before {
     z-index: -1;
 }
 
+.fire-scene {
+    position: fixed;
+    z-index: 0;
+    inset: auto 0 0;
+    height: clamp(170px, 32vh, 340px);
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0.68;
+    contain: strict;
+    -webkit-mask-image: linear-gradient(to top, #000 12%, rgba(0, 0, 0, 0.88) 54%, transparent 100%);
+    mask-image: linear-gradient(to top, #000 12%, rgba(0, 0, 0, 0.88) 54%, transparent 100%);
+}
+
+.fire-scene::before {
+    content: "";
+    position: absolute;
+    inset: 30% -12% -45%;
+    background:
+        radial-gradient(ellipse at 50% 75%, rgba(255, 103, 16, 0.2), transparent 57%),
+        radial-gradient(ellipse at 15% 90%, rgba(206, 34, 12, 0.14), transparent 52%),
+        radial-gradient(ellipse at 87% 90%, rgba(255, 157, 31, 0.13), transparent 50%);
+    filter: blur(28px);
+    animation: firelight-pulse 4.8s ease-in-out infinite alternate;
+}
+
+.fire-art {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 65%;
+    opacity: 0.72;
+    filter: saturate(1.08) brightness(0.72) contrast(1.08);
+    mix-blend-mode: screen;
+    animation: fire-photo-flicker 5.2s ease-in-out infinite alternate;
+}
+
+.ember-particle {
+    position: absolute;
+    bottom: -5px;
+    left: var(--ember-left);
+    width: var(--ember-size, 3px);
+    height: var(--ember-size, 3px);
+    border-radius: 50%;
+    background: #ffd18a;
+    box-shadow: 0 0 7px 2px rgba(255, 123, 27, 0.62);
+    opacity: 0;
+    animation: ember-drift var(--ember-duration, 5s) linear infinite;
+    animation-delay: var(--ember-delay, 0s);
+}
+
+.ember-particle:nth-child(2) {
+    --ember-left: 8%;
+    --ember-duration: 6.4s;
+    --ember-delay: -3.2s;
+    --ember-size: 2px;
+}
+
+.ember-particle:nth-child(3) {
+    --ember-left: 19%;
+    --ember-duration: 5.7s;
+    --ember-delay: -1.1s;
+}
+
+.ember-particle:nth-child(4) {
+    --ember-left: 34%;
+    --ember-duration: 7.1s;
+    --ember-delay: -4.5s;
+    --ember-size: 2px;
+}
+
+.ember-particle:nth-child(5) {
+    --ember-left: 51%;
+    --ember-duration: 5.9s;
+    --ember-delay: -2.4s;
+}
+
+.ember-particle:nth-child(6) {
+    --ember-left: 68%;
+    --ember-duration: 6.8s;
+    --ember-delay: -5.3s;
+    --ember-size: 2px;
+}
+
+.ember-particle:nth-child(7) {
+    --ember-left: 82%;
+    --ember-duration: 5.4s;
+    --ember-delay: -0.8s;
+}
+
+.ember-particle:nth-child(8) {
+    --ember-left: 94%;
+    --ember-duration: 7.3s;
+    --ember-delay: -3.8s;
+    --ember-size: 2px;
+}
+
+@keyframes firelight-pulse {
+    from { opacity: 0.58; transform: scale(0.96); }
+    to { opacity: 0.88; transform: scale(1.04); }
+}
+
+@keyframes fire-photo-flicker {
+    from { transform: scale(1.025) translateY(2px); filter: saturate(1.05) brightness(0.69) contrast(1.08); }
+    to { transform: scale(1.055) translateY(-2px); filter: saturate(1.12) brightness(0.77) contrast(1.1); }
+}
+
+@keyframes ember-drift {
+    0% { opacity: 0; transform: translate3d(0, 0, 0) scale(0.55); }
+    14% { opacity: 0.8; }
+    72% { opacity: 0.48; }
+    100% { opacity: 0; transform: translate3d(15px, -145px, 0) scale(0.12); }
+}
+
 /* Main container */
 .app-container {
+    position: relative;
+    z-index: 1;
     max-width: 1200px;
     width: 92%;
     margin: auto;
@@ -75,7 +193,10 @@ body::before {
     height: 50px;
     display: grid;
     place-items: center;
-    font-size: 25px;
+    color: #27130b;
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: -1px;
     background: linear-gradient(135deg, var(--orange), var(--amber));
     border-radius: 15px;
     box-shadow: 0 0 25px rgba(255, 77, 28, 0.25);
@@ -305,6 +426,17 @@ textarea:focus {
     font-size: 20px;
 }
 
+.form-message {
+    min-height: 18px;
+    margin: -8px 0 12px;
+    color: #a8e6a1;
+    font-size: 12px;
+}
+
+.form-message.error {
+    color: #ff9a83;
+}
+
 /* =========================
    REPORT CARDS
    ========================= */
@@ -335,6 +467,15 @@ textarea:focus {
     display: flex;
     flex-direction: column;
     gap: 15px;
+}
+
+.empty-state {
+    padding: 28px 18px;
+    border: 1px dashed var(--border);
+    border-radius: 14px;
+    color: var(--muted);
+    font-size: 13px;
+    text-align: center;
 }
 
 .issue-card {
@@ -401,6 +542,72 @@ textarea:focus {
     color: #ffad83;
 }
 
+.issue-updated {
+    display: block;
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.report-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.edit-report-btn,
+.delete-report-btn {
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 6px 10px;
+    background: transparent;
+    font: inherit;
+    font-size: 11px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.edit-report-btn {
+    color: var(--amber);
+}
+
+.delete-report-btn {
+    border-color: rgba(255, 77, 28, 0.35);
+    color: #ff9a83;
+}
+
+.edit-report-btn:hover,
+.edit-report-btn:focus-visible {
+    background: rgba(255, 176, 0, 0.1);
+    border-color: var(--amber);
+}
+
+.delete-report-btn:hover {
+    background: rgba(255, 77, 28, 0.12);
+    border-color: var(--orange);
+}
+
+.cancel-edit-btn {
+    width: 100%;
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 13px 18px;
+    background: var(--panel-light);
+    color: var(--white);
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.cancel-edit-btn:hover,
+.cancel-edit-btn:focus-visible {
+    border-color: var(--orange);
+}
+
 /* =========================
    FOOTER
    ========================= */
@@ -454,6 +661,20 @@ textarea:focus {
         height: 43px;
     }
 
+    .fire-scene {
+        height: 190px;
+        opacity: 0.5;
+    }
+
+    .fire-art {
+        opacity: 0.66;
+        object-position: center 58%;
+    }
+
+    .ember-particle:nth-child(n + 7) {
+        display: none;
+    }
+
     .status-badge {
         font-size: 9px;
         padding: 8px 10px;
@@ -478,5 +699,17 @@ textarea:focus {
     .footer {
         flex-direction: column;
         text-align: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fire-scene::before,
+    .fire-art,
+    .ember-particle {
+        animation: none;
+    }
+
+    .ember-particle {
+        opacity: 0.3;
     }
 }

@@ -20,3 +20,41 @@ form functionality yet.
 
 Created the initial interface, fiery theme, form layout, and fictional
 sample reports. Functionality will be implemented in later stages.
+
+## Prompt 2 — Complete Report CRUD
+
+**Tool:** Copilot
+
+**Goal:** Implement complete create, read, update, and delete functionality
+in the existing LabFix project while preserving its Inferno Glow dashboard.
+
+**Prompt summary:**
+
+Add report editing with validation, stable report IDs, modified timestamps,
+and cancel-edit behavior. Require confirmation before deletion. Keep reports
+in localStorage, render user content safely, update the counter and empty
+state, document the functionality, and test the complete report workflow.
+
+**Result:**
+
+Implemented report editing, cancellation, confirmed deletion, modified
+timestamps, and updated documentation in the existing application.
+
+## Prompt 3 — Realistic Fire Visuals
+
+**Tool:** Copilot
+
+**Goal:** Add a natural, restrained fire aesthetic to the existing LabFix
+dashboard without changing its layout or CRUD behavior.
+
+**Prompt summary:**
+
+Create a realistic flame backdrop with warm fire colors, organic motion,
+a soft heat glow, and subtle ember particles. Keep it behind the app,
+responsive, accessible to reduced-motion users, and free of unnecessary
+dependencies or runtime image requests.
+
+**Result:**
+
+Bundled a licensed campfire photograph and added CSS ember/glow effects
+while preserving the existing dashboard and report workflows.

@@ -7,6 +7,7 @@ const pcNumberInput = document.getElementById("pcNumber");
 const categoryInput = document.getElementById("issueCategory");
 const descriptionInput = document.getElementById("description");
 const reportsList = document.getElementById("reportsList");
+const categoryFilter = document.getElementById("categoryFilter");
 const reportCount = document.getElementById("reportCount");
 const formMessage = document.getElementById("formMessage");
 const formTitle = document.getElementById("formTitle");
@@ -63,19 +64,33 @@ function createTextElement(tagName, className, text) {
   element.textContent = text;
   return element;
 }
+function getFilteredReports() {
+  const selectedCategory = categoryFilter.value;
 
+  if (selectedCategory === "All") {
+    return reports;
+  }
+
+  return reports.filter(
+    (report) => report.category === selectedCategory
+  );
+}
 function renderReports() {
   reportsList.replaceChildren();
-  reportCount.textContent = String(reports.length);
+  const filteredReports = getFilteredReports();
+  reportCount.textContent = String(filteredReports.length);
 
-  if (reports.length === 0) {
+  if (filteredReports.length === 0) {
+    const emptyMessage = reports.length === 0
+      ? "No reports yet. Submit an issue to get started."
+      : "No reports match this category.";
     reportsList.appendChild(
-      createTextElement("p", "empty-state", "No reports yet. Submit an issue to get started.")
+      createTextElement("p", "empty-state", emptyMessage)
     );
     return;
   }
 
-  reports.forEach((report) => {
+  filteredReports.forEach((report) => {
     const card = document.createElement("article");
     card.className = "issue-card";
 
@@ -128,6 +143,8 @@ function renderReports() {
     reportsList.appendChild(card);
   });
 }
+
+categoryFilter.addEventListener("change", renderReports);
 
 function exitEditMode() {
   editingReportId = null;

@@ -64,6 +64,33 @@ Added a licensed campfire photograph with CSS-based glow and ember effects. Pres
 
 ---
 
+## Prompt 4 — Review and Fix Category Filter
+
+**Tool:** GitHub Copilot (Agent Mode)
+
+**Prompt:**
+
+Review the category filter feature I just added to LabFix.
+
+Check `index.html` and `script.js`.
+
+Requirements:
+1. The filter must show All Categories, Hardware, Software, Network, and Other.
+2. Selecting a category must display only reports matching that category.
+3. All Categories must display every report.
+4. The report count must update based on the filtered results.
+5. Existing features must continue working: adding, editing, deleting, validation, and localStorage persistence.
+6. Do not unnecessarily redesign the app or change unrelated code.
+
+If you find a problem, fix it. Explain what you checked and what you changed.
+
+**Result:**
+
+Copilot moved the category filter event listener to startup so filtering works immediately without duplicate listeners. It also added a category-specific empty-state message and applied existing form-group styling.
+
+Browser tests passed for all filter options, report counts, editing, validation, localStorage persistence, and deletion.
+
+
 ## Development Notes
 
 - The application was developed using HTML, CSS, and JavaScript.

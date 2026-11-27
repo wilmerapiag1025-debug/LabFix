@@ -1,60 +1,74 @@
 # AI Prompt Log — LabFix
 
+This file records the AI prompts used during the development of LabFix, including their goals, summaries, and results.
+
+---
+
 ## Prompt 1 — Initial UI and Design
 
 **Tool:** ChatGPT
 
-**Goal:** Create the initial user interface for LabFix.
+**Goal:** Create the initial user interface and visual design of LabFix.
 
-**Prompt summary:**
+**Prompt Summary:**
 
-Create a beginner-friendly single-page Computer Laboratory Issue
-Reporter called LabFix using HTML, CSS, and JavaScript. Use a dark
-charcoal background with fiery orange, bright orange, and amber accents.
-Create a modern dashboard layout with a header, welcome banner, issue
-report form, and sample reported issue cards. Use separate index.html,
-style.css, and script.js files. Keep it responsive and do not implement
-form functionality yet.
+Create a beginner-friendly single-page Computer Laboratory Issue Reporter called LabFix using HTML, CSS, and JavaScript.
+
+Use a dark charcoal background with fiery orange and amber accents. Create a modern dashboard layout with a header, welcome banner, issue report form, and fictional sample report cards.
+
+Use separate `index.html`, `style.css`, and `script.js` files. Make the interface responsive. Do not implement form functionality yet.
 
 **Result:**
 
-Created the initial interface, fiery theme, form layout, and fictional
-sample reports. Functionality will be implemented in later stages.
+Created the initial LabFix interface, dashboard layout, fiery color theme, report form, and fictional sample reports.
+
+---
 
 ## Prompt 2 — Complete Report CRUD
 
-**Tool:** Copilot
+**Tool:** GitHub Copilot
 
-**Goal:** Implement complete create, read, update, and delete functionality
-in the existing LabFix project while preserving its Inferno Glow dashboard.
+**Goal:** Implement the complete report management functionality while preserving the existing dashboard design.
 
-**Prompt summary:**
+**Prompt Summary:**
 
-Add report editing with validation, stable report IDs, modified timestamps,
-and cancel-edit behavior. Require confirmation before deletion. Keep reports
-in localStorage, render user content safely, update the counter and empty
-state, document the functionality, and test the complete report workflow.
+Add complete create, read, update, and delete functionality to the existing LabFix application.
+
+Implement report editing with input validation, stable report IDs, modified timestamps, and cancel-edit functionality.
+
+Require confirmation before deleting reports. Save reports using browser `localStorage`, safely display user-entered content, update the report counter and empty state, and document and test the report workflow.
 
 **Result:**
 
-Implemented report editing, cancellation, confirmed deletion, modified
-timestamps, and updated documentation in the existing application.
+Implemented report submission, display, editing, cancellation, and confirmed deletion. Added stable report IDs, modified timestamps, input validation, and `localStorage` persistence.
+
+---
 
 ## Prompt 3 — Realistic Fire Visuals
 
-**Tool:** Copilot
+**Tool:** GitHub Copilot
 
-**Goal:** Add a natural, restrained fire aesthetic to the existing LabFix
-dashboard without changing its layout or CRUD behavior.
+**Goal:** Improve the visual appearance of LabFix by adding a realistic fire background without affecting existing functionality.
 
-**Prompt summary:**
+**Prompt Summary:**
 
-Create a realistic flame backdrop with warm fire colors, organic motion,
-a soft heat glow, and subtle ember particles. Keep it behind the app,
-responsive, accessible to reduced-motion users, and free of unnecessary
-dependencies or runtime image requests.
+Create a realistic flame backdrop with warm fire colors, natural movement, a soft heat glow, and subtle ember particles.
+
+Keep the effects behind the application content. Make them responsive, respect reduced-motion preferences, and avoid unnecessary dependencies or runtime image requests.
+
+Preserve the existing dashboard layout and report functionality.
 
 **Result:**
 
-Bundled a licensed campfire photograph and added CSS ember/glow effects
-while preserving the existing dashboard and report workflows.
+Added a licensed campfire photograph with CSS-based glow and ember effects. Preserved the existing dashboard design and report management functionality.
+
+---
+
+## Development Notes
+
+- The application was developed using HTML, CSS, and JavaScript.
+- AI assistance was used for interface design, functionality, and visual improvements.
+- The project was tested in the browser.
+- Reports are stored locally using `localStorage`.
+- The project was uploaded to GitHub and published using GitHub Pages.
+

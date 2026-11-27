@@ -1,55 +1,82 @@
 # LabFix — Computer Laboratory Issue Reporter
 
+A simple web application that helps students report problems with computers in their school's computer laboratory.
+
 ## Community Problem
 
-Students in our school computer laboratory struggle to report computer
-workstation problems because there is no simple centralized record
-of faulty computers and their issues.
+Students in our school's computer laboratory sometimes experience problems with computer workstations. Reporting these issues can be difficult because there is no simple way to keep track of faulty computers and their reported problems.
 
-## FR-01
+LabFix provides a simple webpage where students can submit and manage computer laboratory issue reports.
 
-Students can report a computer laboratory issue by entering the
-workstation number, issue category, and problem description.
+## Functional Requirement
 
-## Project Goal
+**FR-01:** Students can report a computer laboratory issue by entering the workstation number, issue category, and problem description.
 
-LabFix aims to provide a simple webpage where students can report
-computer laboratory problems so reported issues can be recorded
-and monitored.
+## Acceptance Criteria
 
-## Implemented Functionality
+1. The user can submit a report by providing a valid PC number, selecting an issue category, and entering a problem description.
+2. The system rejects empty fields, invalid PC numbers, and descriptions with fewer than five characters.
+3. Submitted reports appear on the dashboard with their workstation number, category, description, and date and time.
+4. Reports remain saved after refreshing the webpage using browser `localStorage`.
+5. Users can edit and delete existing reports.
 
-- Submit reports with a required positive whole PC number, category, and description of at least five characters.
-- Categorize issues as Hardware, Software, Network, or Other.
-- View saved reports on the dashboard, including workstation, category, description, and date/time; the report count updates automatically.
-- Edit existing reports without creating duplicates. Changes retain the report ID and record a modified date/time.
-- Cancel an edit to restore the blank submission form.
-- Delete reports after confirming the action.
-- Keep reports in this browser using `localStorage`, including across page reloads.
-- Show an empty-state message when there are no reports.
-- Render user-entered content safely and provide accessible report actions.
-- Add a photographic flame backdrop with a flickering heat glow and ember particles.
-- Respect reduced-motion preferences and reduce the effect on mobile screens.
+## Features
 
-The bundled background photo is “FIRE 01” by MarcusObal, from [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:FIRE_01.JPG), licensed under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). The image is stored locally at `assets/campfire.jpg`; the app does not fetch it at runtime.
+- Submit computer laboratory issue reports.
+- Choose from Hardware, Software, Network, or Other categories.
+- Validate user inputs before submission.
+- View all submitted reports on the dashboard.
+- Automatically update the total report count.
+- Edit and delete existing reports.
+- Save reports in the browser using `localStorage`.
+- Display an empty-state message when there are no reports.
+- Use a responsive interface with an animated flame background.
 
-## Technologies
+## Technologies Used
 
 - HTML
 - CSS
 - JavaScript
-- Browser `localStorage`
+- localStorage
+- Git and GitHub
+- GitHub Pages
 
-## Current Progress
+## Testing
 
-- [x] Initial interface and design
-- [x] Report form functionality and input validation
-- [x] Dynamic dashboard, report counter, and empty state
-- [x] Edit reports, validate changes, and cancel edits
-- [x] `localStorage` persistence
-- [x] Confirmed report deletion
-- [x] Browser testing
+The application was tested to check:
+
+- Successful report submission.
+- Empty and invalid input rejection.
+- PC number validation.
+- Issue category selection.
+- Editing and deleting reports.
+- Data persistence after refreshing the webpage.
+
+## Testing Table
+
+The following test cases were performed to verify the functionality of LabFix.
+
+| No. | Test Case | Expected Result | Actual Result |
+|---|---|---|---|
+| 1 | Valid report submission | Report appears on the dashboard. | PASS |
+| 2 | Empty form submission | Submission is rejected. | PASS |
+| 3 | Invalid PC number (0) | Invalid number is rejected. | PASS |
+| 4 | Short description ("Bad") | Description is rejected. | PASS |
+| 5 | Edit existing report | Report updates without duplication. | PASS |
+| 6 | Delete existing report | Selected report is removed. | PASS |
+| 7 | Refresh webpage | Saved report remains visible. | PASS |
+| 8 | Cancel editing | Original report remains unchanged. | PASS |
+
+**Testing Summary:** 8 out of 8 test cases passed.
 
 ## Privacy
 
-Reports are stored locally in the browser that submitted them. No account or personal information is required, and reports are not sent to a server. Clearing browser storage removes saved reports.
+LabFix uses made-up data for demonstration and testing. Reports are stored locally in the browser using `localStorage`. The application does not require accounts, collect personal information, or send reports to an external server.
+
+Clearing browser storage removes saved reports.
+
+## Image Attribution
+
+Background image: "FIRE 01" by MarcusObal, from Wikimedia Commons, licensed under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
+
+The image is stored locally in `assets/campfire.jpg`.
